@@ -12,6 +12,7 @@ class Song {
   constructor(title,artist){
     this.title =title;
     this.artist =artist;
+    Song.playlist.push(this);
   }
   get playCount(){
     return this.#playCount;
@@ -26,17 +27,17 @@ class Song {
   rate(stars){
     if(stars >=1 && stars<=5){
       this.#rating = stars;
-      console.log(`You rated ${title} ${stars} stars`);
+      console.log(`You rated ${this.title} ${stars} stars`);
     }
   }
   isPopular(){
-    return this.#playCount>=10?true:false;
+    return this.#playCount>=10;
   }
   static getTotalSongs(){
     return this.playlist.length;
   }
   static findByTitle(title){
-    return this.playlist.find(title);
+    return this.playlist.find((song)=>song.title === title);
   }
 }
 
